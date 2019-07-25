@@ -3,10 +3,11 @@ package com.xbrain.TestH2.Models;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table( name = "clientes")
-public class Cliente {
+public class Cliente implements Serializable {
 
     @Id
     @Column

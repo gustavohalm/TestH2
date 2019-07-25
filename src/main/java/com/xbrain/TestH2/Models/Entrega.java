@@ -3,10 +3,11 @@ package com.xbrain.TestH2.Models;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "entregas")
-public class Entrega {
+public class Entrega implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -110,4 +111,5 @@ public class Entrega {
     public void setComplemento(String complemento) {
         this.complemento = complemento;
     }
+
 }

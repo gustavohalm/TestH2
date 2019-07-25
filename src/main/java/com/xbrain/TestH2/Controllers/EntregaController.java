@@ -2,6 +2,7 @@ package com.xbrain.TestH2.Controllers;
 
 import com.xbrain.TestH2.Models.Entrega;
 import com.xbrain.TestH2.Models.Pedido;
+import com.xbrain.TestH2.RabbitMq.RabbitMqSender;
 import com.xbrain.TestH2.Services.Interfaces.EntregaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,9 @@ public class EntregaController {
 
     @Autowired
     private EntregaService entregaService;
+
+    @Autowired
+    private RabbitMqSender entregaSender;
 
     public EntregaController(EntregaService entregaService) {
         this.entregaService = entregaService;
@@ -39,7 +43,7 @@ public class EntregaController {
     @ResponseBody
     public Entrega create(@RequestBody Entrega entrega)
     {
-        return  this.entregaService.create(entrega);
+        return  this.entregaSender.sendOrder(entrega);
     }
 
     @PutMapping("/{id}")

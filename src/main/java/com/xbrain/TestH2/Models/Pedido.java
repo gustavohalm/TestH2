@@ -1,11 +1,12 @@
 package com.xbrain.TestH2.Models;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "pedidos")
-public class Pedido {
+public class Pedido  implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -13,7 +14,7 @@ public class Pedido {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "cliente")
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
     @ManyToMany
